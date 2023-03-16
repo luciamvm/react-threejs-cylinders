@@ -1,13 +1,20 @@
 import { useRef } from 'react';
 import { ThreeElements, useFrame, useLoader } from 'react-three-fiber';
-import { Mesh, TextureLoader } from 'three';
+import { Mesh, RepeatWrapping, TextureLoader } from 'three';
 
 const Cylinders = (props: ThreeElements['mesh']) => {
   const leftCylinderRef = useRef<Mesh>(null);
   const rightCylinderRef = useRef<Mesh>(null);
 
   const firstTexture = useLoader(TextureLoader, 'digital.png');
+  firstTexture.wrapS = RepeatWrapping;
+  firstTexture.wrapT = RepeatWrapping;
+  firstTexture.repeat.set(2, 1);
+
   const secondTexture = useLoader(TextureLoader, 'emotions.png');
+  secondTexture.wrapS = RepeatWrapping;
+  secondTexture.wrapT = RepeatWrapping;
+  secondTexture.repeat.set(2, 1);
 
   useFrame(() => {
     leftCylinderRef.current!.rotation.x += 0.01;
@@ -22,7 +29,7 @@ const Cylinders = (props: ThreeElements['mesh']) => {
         rotation={[0, 0, Math.PI / 2]}
         position={[-0.75, 0, 0]}
       >
-        <cylinderGeometry args={[0.8, 0.8, 1.3, 30]} />
+        <cylinderGeometry args={[1.3, 1.3, 1.3, 30]} />
 
         <meshStandardMaterial color="lightGray" map={firstTexture} />
       </mesh>
@@ -33,9 +40,12 @@ const Cylinders = (props: ThreeElements['mesh']) => {
         rotation={[0, 0, Math.PI / 2]}
         position={[0.75, 0, 0]}
       >
-        <cylinderGeometry args={[0.8, 0.8, 1.3, 30]} />
-
-        <meshStandardMaterial color="lightGray" map={secondTexture} />
+        <cylinderGeometry args={[1.3, 1.3, 1.3, 30]} />
+        <meshStandardMaterial
+          color="lightGray"
+          map={secondTexture}
+          roughness={0.3}
+        />
       </mesh>
     </>
   );
