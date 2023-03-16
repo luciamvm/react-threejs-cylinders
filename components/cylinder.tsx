@@ -7,7 +7,7 @@ const Cylinders = (props: ThreeElements['mesh']) => {
   const rightCylinderRef = useRef<Mesh>(null);
 
   const firstTexture = useLoader(TextureLoader, 'digital.png');
-  const secondTexture = useLoader(TextureLoader, 'digital.png');
+  const secondTexture = useLoader(TextureLoader, 'emotions.png');
 
   useFrame(() => {
     leftCylinderRef.current!.rotation.x += 0.01;
@@ -22,7 +22,7 @@ const Cylinders = (props: ThreeElements['mesh']) => {
         rotation={[0, 0, Math.PI / 2]}
         position={[-0.75, 0, 0]}
       >
-        <cylinderGeometry args={[1.3, 1.3, 1.3, 30]} />
+        <cylinderGeometry args={[0.8, 0.8, 1.3, 30]} />
 
         <meshStandardMaterial color="lightGray" map={firstTexture} />
       </mesh>
@@ -33,7 +33,7 @@ const Cylinders = (props: ThreeElements['mesh']) => {
         rotation={[0, 0, Math.PI / 2]}
         position={[0.75, 0, 0]}
       >
-        <cylinderGeometry args={[1.3, 1.3, 1.3, 30]} />
+        <cylinderGeometry args={[0.8, 0.8, 1.3, 30]} />
 
         <meshStandardMaterial color="lightGray" map={secondTexture} />
       </mesh>
