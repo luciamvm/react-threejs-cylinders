@@ -1,8 +1,13 @@
+import { MeshDistortMaterial } from '@react-three/drei';
 import { useRef } from 'react';
 import { ThreeElements, useFrame, useLoader } from 'react-three-fiber';
-import { Mesh, RepeatWrapping, TextureLoader } from 'three';
+import { DoubleSide, Mesh, RepeatWrapping, TextureLoader } from 'three';
 
 const Cylinders = (props: ThreeElements['mesh']) => {
+  const meshRef = useRef();
+
+  const cyliderRef = useRef();
+
   const leftCylinderRef = useRef<Mesh>(null);
   const rightCylinderRef = useRef<Mesh>(null);
 
@@ -29,9 +34,23 @@ const Cylinders = (props: ThreeElements['mesh']) => {
         rotation={[0, 0, Math.PI / 2]}
         position={[-0.75, 0, 0]}
       >
-        <cylinderGeometry args={[1.3, 1.3, 1.3, 30]} />
+        <cylinderBufferGeometry args={[1.3, 1.3, 1.3, 30, 8, true]} />
 
-        <meshStandardMaterial color="lightGray" map={firstTexture} />
+        <MeshDistortMaterial
+          ref={meshRef}
+          map={firstTexture}
+          roughness={1}
+          metalness={0.001}
+          bumpScale={0.005}
+          clearcoat={0.5}
+          clearcoatRoughness={1}
+          radius={1}
+          distort={0.3}
+          side={DoubleSide}
+          specularColor={'#fff'}
+          specularIntensity={1}
+          shadowSide={1}
+        />
       </mesh>
 
       <mesh
@@ -40,11 +59,24 @@ const Cylinders = (props: ThreeElements['mesh']) => {
         rotation={[0, 0, Math.PI / 2]}
         position={[0.75, 0, 0]}
       >
-        <cylinderGeometry args={[1.3, 1.3, 1.3, 30]} />
-        <meshStandardMaterial
-          color="lightGray"
+        <cylinderBufferGeometry
+          ref={cyliderRef}
+          args={[1.3, 1.3, 1.3, 90, 100, true]}
+        />
+        <MeshDistortMaterial
+          ref={meshRef}
           map={secondTexture}
-          roughness={0.3}
+          roughness={1}
+          metalness={0.001}
+          bumpScale={0.005}
+          clearcoat={0.5}
+          clearcoatRoughness={1}
+          radius={1}
+          distort={0.3}
+          side={DoubleSide}
+          specularColor={'#fff'}
+          specularIntensity={1}
+          shadowSide={1}
         />
       </mesh>
     </>
