@@ -33,6 +33,7 @@ export default function Home() {
         <h4>Args</h4>
         <input
           type="number"
+          step={0.1}
           onChange={(event) => {
             updateValue(1, parseFloat(event.currentTarget.value));
           }}
@@ -41,6 +42,7 @@ export default function Home() {
         />
         <input
           type="number"
+          step={0.1}
           onChange={(event) => {
             updateValue(2, parseFloat(event.currentTarget.value));
           }}
@@ -49,6 +51,7 @@ export default function Home() {
         />
         <input
           type="number"
+          step={0.1}
           onChange={(event) => {
             updateValue(3, parseFloat(event.currentTarget.value));
           }}
