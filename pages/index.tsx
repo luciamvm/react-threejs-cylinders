@@ -1,9 +1,13 @@
 import Cylinders from '@/components/cylinder';
+import DigitalEmotions from '@/components/text';
 import { Canvas } from '@react-three/fiber';
 
 export default function Home() {
   return (
-    <Canvas style={{ width: '100vw', height: '100vh', background: 'white' }}>
+    <Canvas
+      style={{ width: '100vw', height: '100vh', background: 'white' }}
+      // camera={{ position: [10, 10, 10] }}
+    >
       <ambientLight intensity={0.3} />
 
       {/* top light */}
@@ -29,6 +33,10 @@ export default function Home() {
         color="#3A00FF"
       />
       <Cylinders />
+      <DigitalEmotions />
+
+      {/* <OrbitControls /> */}
+      {/* <Stats /> */}
     </Canvas>
   );
 }
