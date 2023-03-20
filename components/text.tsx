@@ -1,5 +1,5 @@
 import { useScrollDirection } from '@/hooks/useScrollDirection';
-import { GradientTexture, Text } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 import { useRef } from 'react';
 import { useFrame, useLoader } from 'react-three-fiber';
 import { Mesh, TextureLoader } from 'three';
@@ -41,36 +41,29 @@ const DigitalEmotions = () => {
   });
   return (
     <mesh ref={textRef}>
-      {/* <Html
-        center
-        sprite
-        // transform
-        distanceFactor={20}
-        position={[0, 0, 0]}
+      <Html
+        // center
+        // sprite
+        transform
+        // distanceFactor={20}
+        position={[0, 0, -1]}
         className={'outlineText'}
-        zIndexRange={[-999, -9999]}
       >
         Digital Emotions
-      </Html> */}
+      </Html>
 
-      <Text
+      {/* <Text
         scale={[1, 1, 1]}
         fontSize={2}
         font="AbrilFatface-Regular.ttf"
-        fillOpacity={0}
+        // fillOpacity={0}
         strokeWidth={'2.5%'}
-        strokeColor="#000"
+        // strokeColor="#000"
         // strokeOpacity={0}
       >
         Digital Emotions
-        <meshBasicMaterial>
-          <GradientTexture
-            stops={[0, 1]} // As many stops as you want
-            colors={['aquamarine', 'hotpink']} // Colors need to match the number of stops
-            size={1024} // Size is optional, default = 1024
-          />
-        </meshBasicMaterial>
-      </Text>
+        <meshBasicMaterial map={gradient} fog vertexColors></meshBasicMaterial>
+      </Text> */}
     </mesh>
   );
 };
